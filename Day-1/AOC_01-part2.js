@@ -42,9 +42,5 @@ function sumArrays() {
 const summedArr = sumArrays(elvesFoodItems);
 const sortedArr = summedArr.sort((a, b) => b - a);
 
-function sumHighestThree() {
-  return sortedArr[0] + sortedArr[1] + sortedArr[2];
-}
-
-const answer = sumHighestThree(sortedArr);
+const answer = sortedArr.slice(0,3).reduce((sum, currentVal) => sum + currentVal);
 console.log("Answer: ", answer);
