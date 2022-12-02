@@ -24,7 +24,7 @@ const input = fs.readFileSync("./Day-2/input.txt", { encoding: "utf-8" });
 const gamesArray = input.split("\n");
 
 let gameScoresArray = [];
-let calculateMyScores = () => {
+const calculateMyScores = () => {
   gamesArray.map((game) => {
     switch (game) {
       case "A Y":
@@ -83,7 +83,7 @@ console.log("Score 1: ", calculateMyScores());
 // C X - LOSE - paper 0 + 2 = 2
 
 let gameScoresArray2 = [];
-let calculateMyScores2 = () => {
+const calculateMyScores2 = () => {
   gamesArray.map((game) => {
     switch (game) {
       case "A Y":
