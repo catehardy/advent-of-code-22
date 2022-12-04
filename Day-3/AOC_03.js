@@ -14,29 +14,35 @@
 // What is the sum of the priorities of those item types?
 
 // TODO
-// split each rucksack into two sub-arrays
-// find the duplicates (items which occur in both halves) for each rucksack
+// DONE: split each rucksack into two sub-arrays
+// WORKING ON: find the duplicates (items which occur in both halves) for each rucksack
 // push duplicates to duplicateItems array
-// convert/lookup value of each letter and sum total
+// convert/lookup value of each letter (see CS50 code)
+// sum total (reduce)
 
+const { Console } = require("console");
 const fs = require("fs");
 const input = fs.readFileSync("./Day-3/input.txt", { encoding: "utf-8" });
 
 const rucksackArray = input.split("\n");
 
-let splitRucksackArray = [];
-let duplicateItems = [];
 
-// let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
-// console.log(findDuplicates(rucksackArray)) // All duplicates
+function findDuplicates() {
+  let splitRucksackArray = [];
+  rucksackArray.map((rucksack) => {
+    splitRucksackArray.push(rucksack.substring(0, rucksack.length / 2));
+    splitRucksackArray.push(rucksack.substring(rucksack.length / 2));
+  });
+  for (let i = 0; i < splitRucksackArray.length; i = i+2) {
+      // console.log("part 1: ", splitRucksackArray[i], "part 2: ", splitRucksackArray[i + 1],"\n")
+      let duplicates = []
+      for (let j = 0; j < splitRucksackArray[i].length; j++) {
+        if (splitRucksackArray[i][j] === splitRucksackArray[i][j+1]) {
+          duplicates.push(splitRucksackArray[i][j]);
+        }
+      }
+    console.log(duplicates);
+  }
+}
 
-// The substring() method returns:
-// the part of the string from the start index up to and excluding the end index,
-// or to the end of the string if no end index is supplied
-const splitIntoHalves = rucksackArray.map((rucksack) => {
-  splitRucksackArray.push(rucksack.substring(0, rucksack.length / 2));
-  splitRucksackArray.push(rucksack.substring(rucksack.length / 2));
-});
-
-// splitIntoHalves(rucksackArray);
-console.log(splitRucksackArray);
+findDuplicates(rucksackArray);
