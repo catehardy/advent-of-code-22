@@ -1,5 +1,5 @@
 // Rucksack Reorganization: https://adventofcode.com/2022/day/3
-//Find the item type that appears in both compartments of each rucksack.
+// Find the item type that appears in both compartments of each rucksack.
 // What is the sum of the priorities of those item types?
 
 const fs = require("fs");
@@ -7,6 +7,7 @@ const input = fs
   .readFileSync("./Day-3/input.txt", { encoding: "utf-8" })
   .split("\n");
 
+const priorities = "0abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let duplicateAdded = false;
 
 // split each rucksack into two sub-arrays
@@ -41,7 +42,6 @@ function findDuplicates(arr) {
 // lookup value of each letter
 // sum total (reduce)
 function getPriorityVal(duplicates) {
-  const priorities = "0abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const priorityVals = duplicates.map((item) => priorities.indexOf(item));
   const sumPriority = priorityVals.reduce(
     (accumulator, currentValue) => accumulator + currentValue
@@ -50,3 +50,30 @@ function getPriorityVal(duplicates) {
 }
 
 splitRucksacks(input);
+
+
+// Part 2
+// Find the one item type that is common between all three Elves in each group.
+// What is the sum of the priorities of those item types?
+
+function findDuplicates2(arr) {
+  const duplicates = [];
+  for (let i = 0; i < arr.length; i = i + 3) {
+    duplicateAdded = false;
+    for (let j = 0; j < arr[i].length; j++) {
+      for (let k = 0; k < arr[i+1].length; k++) {
+        for (let l = 0; l < arr[i+2].length; l++) {
+          let current = arr[i][j];
+          if (current === arr[i + 1][k] && current === arr[i + 2][l] && duplicateAdded === false) {
+            duplicates.push(arr[i][j]);
+            // now stop looking for duplicates
+            duplicateAdded = true;
+          }
+        }
+      }
+    }
+  }
+  getPriorityVal(duplicates);
+}
+
+findDuplicates2(input);
