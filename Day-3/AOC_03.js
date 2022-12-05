@@ -37,8 +37,11 @@ function findDuplicates() {
       // console.log("part 1: ", splitRucksackArray[i], "part 2: ", splitRucksackArray[i + 1],"\n")
       let duplicates = []
       for (let j = 0; j < splitRucksackArray[i].length; j++) {
-        if (splitRucksackArray[i][j] === splitRucksackArray[i][j+1]) {
-          duplicates.push(splitRucksackArray[i][j]);
+        for (let k = 0; k < splitRucksackArray[i].length; k++) {
+          if (splitRucksackArray[i][j] === splitRucksackArray[i+1][k]) {
+            duplicates.push(splitRucksackArray[i][j]);
+            // then stop looking for duplicates!
+          }
         }
       }
     console.log(duplicates);
