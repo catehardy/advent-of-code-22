@@ -2,17 +2,17 @@
 //Find the item type that appears in both compartments of each rucksack.
 // What is the sum of the priorities of those item types?
 
-const { Console } = require("console");
 const fs = require("fs");
-const input = fs.readFileSync("./Day-3/input.txt", { encoding: "utf-8" });
+const input = fs
+  .readFileSync("./Day-3/input.txt", { encoding: "utf-8" })
+  .split("\n");
 
-const rucksackArray = input.split("\n");
 let duplicateAdded = false;
 
 // split each rucksack into two sub-arrays
 function splitRucksacks() {
   const splitRucksackArray = [];
-  rucksackArray.map((rucksack) => {
+  input.map((rucksack) => {
     splitRucksackArray.push(rucksack.substring(0, rucksack.length / 2));
     splitRucksackArray.push(rucksack.substring(rucksack.length / 2));
   });
@@ -41,13 +41,12 @@ function findDuplicates(arr) {
 // lookup value of each letter
 // sum total (reduce)
 function getPriorityVal(duplicates) {
-  const priorities = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const indexOfVals = duplicates.map((item) => priorities.indexOf(item));
-  const priorityVals = indexOfVals.map((x) => x + 1);
+  const priorities = "0abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const priorityVals = duplicates.map((item) => priorities.indexOf(item));
   const sumPriority = priorityVals.reduce(
     (accumulator, currentValue) => accumulator + currentValue
   );
   console.log({ sumPriority });
 }
 
-splitRucksacks(rucksackArray);
+splitRucksacks(input);
