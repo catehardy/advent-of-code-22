@@ -13,10 +13,10 @@
 //Find the item type that appears in both compartments of each rucksack.
 // What is the sum of the priorities of those item types?
 
-// TODO
+// TODO:
 // DONE: split each rucksack into two sub-arrays
-// WORKING ON: find the duplicates (items which occur in both halves) for each rucksack
-// push duplicates to duplicateItems array
+// DONE: find the duplicates (items which occur in both halves) for each rucksack
+// DONE: push duplicates to duplicateItems array
 // convert/lookup value of each letter (see CS50 code)
 // sum total (reduce)
 
@@ -25,7 +25,7 @@ const fs = require("fs");
 const input = fs.readFileSync("./Day-3/input.txt", { encoding: "utf-8" });
 
 const rucksackArray = input.split("\n");
-
+let duplicateAdded = false;
 
 function findDuplicates() {
   let splitRucksackArray = [];
@@ -33,17 +33,19 @@ function findDuplicates() {
     splitRucksackArray.push(rucksack.substring(0, rucksack.length / 2));
     splitRucksackArray.push(rucksack.substring(rucksack.length / 2));
   });
-  for (let i = 0; i < splitRucksackArray.length; i = i+2) {
-      // console.log("part 1: ", splitRucksackArray[i], "part 2: ", splitRucksackArray[i + 1],"\n")
-      let duplicates = []
-      for (let j = 0; j < splitRucksackArray[i].length; j++) {
-        for (let k = 0; k < splitRucksackArray[i].length; k++) {
-          if (splitRucksackArray[i][j] === splitRucksackArray[i+1][k]) {
-            duplicates.push(splitRucksackArray[i][j]);
-            // then stop looking for duplicates!
-          }
+  for (let i = 0; i < splitRucksackArray.length; i = i + 2) {
+    // console.log("part 1: ", splitRucksackArray[i], "part 2: ", splitRucksackArray[i + 1],"\n")
+    const duplicates = [];
+    duplicateAdded = false;
+    for (let j = 0; j < splitRucksackArray[i].length; j++) {
+      for (let k = 0; k < splitRucksackArray[i].length; k++) {
+        if (splitRucksackArray[i][j] === splitRucksackArray[i + 1][k] && duplicateAdded === false) {
+          duplicates.push(splitRucksackArray[i][j]);
+          // now stop looking for duplicates
+          duplicateAdded = true;
         }
       }
+    }
     console.log(duplicates);
   }
 }
