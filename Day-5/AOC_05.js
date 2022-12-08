@@ -18,7 +18,7 @@ const input = fs
   .split("\n");
 
   console.log(input);
-// 'move 5 from 8 to 2',  'move 2 from 4 to 5', ...etc
+// 'move 5 from 8 to 2',  'move 10 from 4 to 7', ...etc
 
 // human parsing for the stacks! :)
 // left is bottom; right is top
@@ -33,11 +33,26 @@ const s8 = ["G","S","J","V","Z","N","H","P"];
 const s9 = ["Z","F","H","G"];
 
 // TODO
-// parse 'move 5 from 8 to 2' => '5,8,2'
-// Number()
-// three parameters: number of moves, location 1, and location 2
-// create a loop where i = number of moves
+// DONE parse 'move 10 from 8 to 2' => '10,8,2'
+// DONE Number()
+// DONE three parameters: number of moves, location 1, and location 2
+// DONE create a loop where i = number of moves
 // slice from end of location 1
 // push to end of location 2
 // potential bug: what happens if there aren't enough crates for a move?
 // log stack[stack.length-1] for each stack
+
+input.forEach((str) => {
+    const parsedInstructions = str.replace('move ','').replace(' from ',',').replace(' to ',',');
+    console.log(parsedInstructions);
+    const instructionsArray = parsedInstructions.split(',');
+    console.log(instructionsArray);
+    const moves = Number(instructionsArray[0]);
+    const locationFrom = Number(instructionsArray[1]);
+    const locationTo = Number(instructionsArray[2]);
+    console.log({moves, locationFrom, locationTo})
+
+    for (let i = 0; i < moves; i++) {
+        const crate = ;
+    }
+});
