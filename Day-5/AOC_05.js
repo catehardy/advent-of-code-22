@@ -1,6 +1,7 @@
 // Day 5: Supply Stacks - https://adventofcode.com/2022/day/5
-// Crates are moved one at a time
-// After the rearrangement procedure completes, which crate ends up on top of each stack?
+// Part 1: Crates are moved one at a time.
+// Part 2: Multiple crates move at once, staying in the same order as they were originally stacked.
+// Both parts: After the rearrangement procedure completes, which crate ends up on top of each stack?
 //
 //     [G] [R]                 [P]    
 //     [H] [W]     [T] [P]     [H]    
@@ -44,6 +45,7 @@ input.forEach((str) => {
     const locationFrom = Number(instructionsArray[1]);
     const locationTo = Number(instructionsArray[2]);
     
+    // Part 1:
     // Create a loop where i = number of moves
     // Pop from end of locationFrom
     // Push to end of locationTo
@@ -51,6 +53,13 @@ input.forEach((str) => {
         const crate = stacks[locationFrom-1].pop();
         stacks[locationTo-1].push(crate);
     }
+
+    // part 2: uncomment this and comment out part 1 to run!
+    // const crate = stacks[locationFrom-1].splice(-moves);
+    // for (let i = 0; i < crate.length; i++) {
+    //     stacks[locationTo-1].push(crate[i]);
+    // }
+
 });
 
 // log final top crate for each stack
