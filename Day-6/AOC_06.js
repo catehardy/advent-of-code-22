@@ -8,21 +8,25 @@
 const fs = require("fs");
 const input = fs.readFileSync("./Day-6/input.txt", { encoding: "utf-8" });
 
-// // populate array with first 4 chars of input
+function containsDuplicates(array) {
+  const result = array.some((element) => {
+    if (array.indexOf(element) !== array.lastIndexOf(element)) {
+      return true;
+    }
+    return false;
+  });
+  return result;
+}
+
+// Part 1:
+// populate array with first 4 chars of input
 const checkingArr = [];
 for (let i = 0; i < 4; i++) {
   checkingArr.push(input[i]);
 }
 
 for (let i = 0; i < input.length; i++) {
-  if (
-    checkingArr[0] !== checkingArr[1] &&
-    checkingArr[0] !== checkingArr[2] &&
-    checkingArr[0] !== checkingArr[3] &&
-    checkingArr[1] !== checkingArr[2] &&
-    checkingArr[1] !== checkingArr[3] &&
-    checkingArr[2] !== checkingArr[3]
-  ) {
+  if (!containsDuplicates(checkingArr)) {
     console.log("Part 1: ", i + 4);
     break;
   } else {
@@ -31,9 +35,7 @@ for (let i = 0; i < input.length; i++) {
   }
 }
 
-// Part 2: A start-of-message marker is just like a start-of-packet marker,
-// except it consists of 14 distinct characters rather than 4.
-
+// Part 2:
 // populate array with first 14 chars of input
 const checkingArr2 = [];
 for (let i = 0; i < 14; i++) {
@@ -50,12 +52,3 @@ for (let i = 0; i < input.length; i++) {
   }
 }
 
-function containsDuplicates(array) {
-  const result = array.some((element) => {
-    if (array.indexOf(element) !== array.lastIndexOf(element)) {
-      return true;
-    }
-    return false;
-  });
-  return result;
-}

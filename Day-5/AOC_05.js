@@ -15,12 +15,10 @@
 
 // 'move 5 from 8 to 2',  'move 10 from 4 to 7', ...etc
 
-
 const fs = require("fs");
 const input = fs
   .readFileSync("./Day-5/input.txt", { encoding: "utf-8" })
   .split("\n");
-
 
 // human parsing for the stacks! :)
 // left is bottom; right is top
@@ -55,9 +53,9 @@ input.forEach((str) => {
     }
 
     // part 2: uncomment this and comment out part 1 to run!
-    // const crate = stacks[locationFrom-1].splice(-moves);
-    // for (let i = 0; i < crate.length; i++) {
-    //     stacks[locationTo-1].push(crate[i]);
+    // const crates = stacks[locationFrom-1].splice(-moves);
+    // for (let i = 0; i < crates.length; i++) {
+    //     stacks[locationTo-1].push(crates[i]);
     // }
 
 });
