@@ -8,7 +8,7 @@
 const fs = require("fs");
 const input = fs.readFileSync("./Day-6/input.txt", { encoding: "utf-8" });
 
-// Note on some() vs <every() - I need to use some() here because every() will iterate over the whole array
+// Note on some() vs every() - I need to use some() here because every() will iterate over the whole array
 // and return "false" to 'containsDuplicates' if there are ANY elements which AREN'T duplicates!
 function containsDuplicates(array) {
   const result = array.some((element) => {
@@ -53,4 +53,3 @@ for (let i = 0; i < input.length; i++) {
     checkingArr2.push(input[i + 14]);
   }
 }
-
